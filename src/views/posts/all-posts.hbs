@@ -1,0 +1,45 @@
+<header class='header'>
+    <div class='logo'>
+        <a href="http://localhost:3000/">
+            <h3>Gestiones Autoservicio Más</h3>
+        </a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/posts">Publicaciones</a></li>
+            <li><a href="/posts/add">Crear Publicación</a></li>
+            <li><a href="/users/logout">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+</header><br><br><br>
+
+<div class="row">
+    {{#each posts}}
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title d-flex justify-content-between align-items-center">
+                    {{title}}<br>
+                    (Sector: {{sector}}) <a href="/posts/edit/{{_id}}">
+                        <h6>Editar</h6>
+                    </a>
+                </h4>
+                <p>{{description}}</p><br>
+                <form action="/posts/delete/{{_id}}?_method=delete" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <button class="btn btn-danger btn-block btn-sm" type="submit">
+                        Eliminar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="card mx-auto">
+        <div class="card-body">
+            <p class="lead">No hay publicaciones todavía</p>
+            <a href="/posts/add" class="btn btn-success btn-block">Crear una</a>
+        </div>
+    </div>
+    {{/each}}
+</div>
